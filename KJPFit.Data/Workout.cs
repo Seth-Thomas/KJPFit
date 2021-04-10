@@ -12,6 +12,11 @@ namespace KJPFit.Data
         [Key]
         public int WorkoutId { get; set; }
         [Required]
+        //[Range(1,10, ErrorMessage="please choose a number between 1 and 10")]
+        //[MaxLength(100, ErrorMessage="too many characters in this field")]
+        //[Display(Name="Your Name")]
+        public Guid OwnerId { get; set; }
+        [Required]
         public string WorkoutName { get; set; }
         //[DefaultValue(false)]
         //public bool IsFavorited { get; set; }
