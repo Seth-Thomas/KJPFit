@@ -8,5 +8,7 @@ namespace KJPFit.Models
 {
     public class StatEdit
     {
+        public int StatId { get; set; }
+        public decimal? Weight { get; set; }
     }
 }

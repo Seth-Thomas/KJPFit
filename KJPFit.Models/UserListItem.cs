@@ -8,5 +8,9 @@ namespace KJPFit.Models
 {
     public class UserListItem
     {
+        public int UserId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int? Height { get; set; }
     }
 }

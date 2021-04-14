@@ -8,5 +8,8 @@ namespace KJPFit.Models
 {
     public class StatCreate
     {
+        public int StatId { get; set; }
+        public decimal? Weight { get; set; }
+        public DateTimeOffset WeightDate { get; set; }
     }
 }

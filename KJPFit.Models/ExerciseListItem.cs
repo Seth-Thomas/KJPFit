@@ -8,5 +8,7 @@ namespace KJPFit.Models
 {
     public class ExerciseListItem
     {
+        public int ExerciseId { get; set; }
+        public string ExerciseName { get; set; }
     }
 }
