@@ -55,10 +55,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KJPFit.Data\KJPFit.Data.csproj">
+      <Project>{79031494-fd3e-4dac-b65a-ea9bbd974d8b}</Project>
+      <Name>KJPFit.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJPFit.Models\KJPFit.Models.csproj">
+      <Project>{2c8f37a4-c14f-4467-b8b8-f744fce9ab9f}</Project>
+      <Name>KJPFit.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

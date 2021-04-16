@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KJPFit.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,12 @@ namespace KJPFit.WebMVC.Controllers
 {
     public class WorkoutController : Controller
     {
+        [Authorize]
         // GET: Workout
         public ActionResult Index()
         {
-            return View();
+            var model = new WorkoutListItem[0];
+            return View(model);
         }
     }
 }

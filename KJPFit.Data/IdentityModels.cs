@@ -32,7 +32,7 @@ namespace KJPFit.Data
             return new ApplicationDbContext();
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> KJPUser { get; set; }
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<Stat> Stats { get; set; }
 

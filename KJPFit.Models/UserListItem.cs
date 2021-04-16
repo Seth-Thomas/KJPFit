@@ -8,9 +8,11 @@ namespace KJPFit.Models
 {
     public class UserListItem
     {
-        public int UserId { get; set; }
+        public  int  UserId { get; set; }
+        public Guid OwnerId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int? Height { get; set; }
+        public int? HeightInInches { get; set; }
+        public DateTimeOffset Joined { get; set; }
     }
 }
