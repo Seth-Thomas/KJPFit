@@ -77,5 +77,21 @@ namespace KJPFit.Services
                     };
             }
         }
+        public bool UpdateUser(UserEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .KJPUser
+                        .Single(e => e.UserId == model.UserId && e.OwnerId == _userId);
+
+                entity.FirstName = model.FirstName;
+                entity.LastName = model.LastName;
+                entity.HeightInInches = (int)model.HeightInInches;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

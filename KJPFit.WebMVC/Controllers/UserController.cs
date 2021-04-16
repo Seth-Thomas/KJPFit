@@ -50,6 +50,43 @@ namespace KJPFit.WebMVC.Controllers
 
             return View(model);
         }
+        public ActionResult Edit(int id)
+        {
+            var service = CreateUserService();
+            var detail = service.GetUserById(id);
+            var model =
+                new UserEdit
+                {
+                    UserId = detail.UserId,
+                    FirstName = detail.FirstName,
+                    LastName = detail.LastName,
+                    HeightInInches = detail.HeightInInches
+                };
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, UserEdit model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            if (model.UserId != id)
+            {
+                ModelState.AddModelError("", "Id Doesn't Match");
+                return View(model);
+            }
+
+            var service = CreateUserService();
+
+            if (service.UpdateUser(model))
+            {
+                TempData["SaveResult"] = "User info was updated.";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "User info could not be updated.");
+            return View(model);
+        }
 
         private UserService CreateUserService()
         {
