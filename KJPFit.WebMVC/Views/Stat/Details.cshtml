@@ -1,0 +1,49 @@
+﻿@model KJPFit.Models.StatDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>StatDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StatId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeightDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeightDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GoalMessage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoalMessage)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StatId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

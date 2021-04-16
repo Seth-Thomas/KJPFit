@@ -9,11 +9,12 @@ namespace KJPFit.Models
 {
     public class StatCreate
     {
-        public int StatId { get; set; }
+        //public int StatId { get; set; }
         [Required]
-        public decimal? Weight { get; set; }
+        public int Weight { get; set; }
         [MaxLength(5000)]
         public string GoalMessage { get; set; }
-        public DateTimeOffset WeightDate { get; set; }
+        [Display(Name = "Weight This Day")]
+        public DateTimeOffset? WeightDate { get; set; }
     }
 }

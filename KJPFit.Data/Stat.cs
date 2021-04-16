@@ -13,9 +13,12 @@ namespace KJPFit.Data
         [Key]
         public int StatId { get; set; }
         [Required]
-        public decimal Weight{ get; set; }
+        public Guid OwnerId { get; set; }
         [Required]
+        public int Weight{ get; set; }
         public DateTimeOffset WeightDate { get; set; }
+
+        public string GoalMessage { get; set; }
         //[ForeignKey]
         //public int UserId { get; set; }
     }

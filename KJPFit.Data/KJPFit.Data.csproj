@@ -72,6 +72,22 @@
     <Compile Include="Migrations\202104160018284_DateJoined to joined and add modified.Designer.cs">
       <DependentUpon>202104160018284_DateJoined to joined and add modified.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202104160210011_workout updated.cs" />
+    <Compile Include="Migrations\202104160210011_workout updated.Designer.cs">
+      <DependentUpon>202104160210011_workout updated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104161754220_stat table changed.cs" />
+    <Compile Include="Migrations\202104161754220_stat table changed.Designer.cs">
+      <DependentUpon>202104161754220_stat table changed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104161842206_added to stat goal message.cs" />
+    <Compile Include="Migrations\202104161842206_added to stat goal message.Designer.cs">
+      <DependentUpon>202104161842206_added to stat goal message.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202104161932094_hope this works.cs" />
+    <Compile Include="Migrations\202104161932094_hope this works.Designer.cs">
+      <DependentUpon>202104161932094_hope this works.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stat.cs" />
@@ -94,6 +110,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202104160018284_DateJoined to joined and add modified.resx">
       <DependentUpon>202104160018284_DateJoined to joined and add modified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104160210011_workout updated.resx">
+      <DependentUpon>202104160210011_workout updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104161754220_stat table changed.resx">
+      <DependentUpon>202104161754220_stat table changed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104161842206_added to stat goal message.resx">
+      <DependentUpon>202104161842206_added to stat goal message.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202104161932094_hope this works.resx">
+      <DependentUpon>202104161932094_hope this works.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

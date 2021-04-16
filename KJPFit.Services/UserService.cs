@@ -93,5 +93,19 @@ namespace KJPFit.Services
                 return ctx.SaveChanges() == 1;
             }
         }
+        public bool DeleteUser(int userId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .KJPUser
+                        .Single(e => e.UserId == userId && e.OwnerId == _userId);
+
+                ctx.KJPUser.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

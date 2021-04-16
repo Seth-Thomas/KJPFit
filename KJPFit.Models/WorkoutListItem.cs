@@ -14,8 +14,10 @@ namespace KJPFit.Models
 
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
-        //[UIHint("Starred")]
-        //[Display(Name = "Important")]
-        //public bool IsFavortied { get; set; }
+        [UIHint("Favorited")]
+        [Display(Name = "Important")]
+        public bool IsFavorited { get; set; } 
+
+        // ElevenNote Star 0.01 module after workout is finished
     }
 }
