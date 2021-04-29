@@ -7,13 +7,13 @@ namespace KJPFit.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class databasesetup : IMigrationMetadata
+    public sealed partial class guidadded : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(databasesetup));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(guidadded));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104111932313_database setup"; }
+            get { return "202104272355214_guid added"; }
         }
         
         string IMigrationMetadata.Source

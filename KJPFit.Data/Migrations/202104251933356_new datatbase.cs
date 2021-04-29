@@ -3,7 +3,7 @@ namespace KJPFit.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class newdatatbase : DbMigration
     {
         public override void Up()
         {
@@ -16,7 +16,7 @@ namespace KJPFit.Data.Migrations
                         Sets = c.Int(nullable: false),
                         Reps = c.Int(nullable: false),
                         Weight = c.Int(nullable: false),
-                        Distance = c.Int(nullable: false),
+                        DistanceInMiles = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ExerciseId);
             
@@ -26,9 +26,24 @@ namespace KJPFit.Data.Migrations
                     {
                         WorkoutId = c.Int(nullable: false, identity: true),
                         WorkoutName = c.String(nullable: false),
+                        IsFavorited = c.Boolean(nullable: false),
                         Created = c.DateTimeOffset(nullable: false, precision: 7),
                     })
                 .PrimaryKey(t => t.WorkoutId);
+            
+            CreateTable(
+                "dbo.User",
+                c => new
+                    {
+                        UserId = c.Int(nullable: false, identity: true),
+                        OwnerId = c.Guid(nullable: false),
+                        FirstName = c.String(nullable: false),
+                        LastName = c.String(nullable: false),
+                        HeightInInches = c.Int(nullable: false),
+                        Joined = c.DateTimeOffset(nullable: false, precision: 7),
+                        Modified = c.DateTimeOffset(nullable: false, precision: 7),
+                    })
+                .PrimaryKey(t => t.UserId);
             
             CreateTable(
                 "dbo.IdentityRole",
@@ -59,21 +74,14 @@ namespace KJPFit.Data.Migrations
                 c => new
                     {
                         StatId = c.Int(nullable: false, identity: true),
-                        Weight = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        UserStatId = c.Int(nullable: false),
+                        Weight = c.Int(nullable: false),
                         WeightDate = c.DateTimeOffset(nullable: false, precision: 7),
+                        GoalMessage = c.String(),
                     })
-                .PrimaryKey(t => t.StatId);
-            
-            CreateTable(
-                "dbo.User",
-                c => new
-                    {
-                        UserId = c.Int(nullable: false, identity: true),
-                        FirstName = c.String(nullable: false),
-                        LastName = c.String(nullable: false),
-                        Height = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.UserId);
+                .PrimaryKey(t => t.StatId)
+                .ForeignKey("dbo.User", t => t.UserStatId, cascadeDelete: true)
+                .Index(t => t.UserStatId);
             
             CreateTable(
                 "dbo.ApplicationUser",
@@ -141,6 +149,7 @@ namespace KJPFit.Data.Migrations
             DropForeignKey("dbo.IdentityUserRole", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserLogin", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.IdentityUserClaim", "ApplicationUser_Id", "dbo.ApplicationUser");
+            DropForeignKey("dbo.Stat", "UserStatId", "dbo.User");
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
             DropForeignKey("dbo.WorkoutExercise", "Exercise_ExerciseId", "dbo.Exercise");
             DropForeignKey("dbo.WorkoutExercise", "Workout_WorkoutId", "dbo.Workout");
@@ -148,16 +157,17 @@ namespace KJPFit.Data.Migrations
             DropIndex("dbo.WorkoutExercise", new[] { "Workout_WorkoutId" });
             DropIndex("dbo.IdentityUserLogin", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserClaim", new[] { "ApplicationUser_Id" });
+            DropIndex("dbo.Stat", new[] { "UserStatId" });
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
             DropTable("dbo.WorkoutExercise");
             DropTable("dbo.IdentityUserLogin");
             DropTable("dbo.IdentityUserClaim");
             DropTable("dbo.ApplicationUser");
-            DropTable("dbo.User");
             DropTable("dbo.Stat");
             DropTable("dbo.IdentityUserRole");
             DropTable("dbo.IdentityRole");
+            DropTable("dbo.User");
             DropTable("dbo.Workout");
             DropTable("dbo.Exercise");
         }

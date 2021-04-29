@@ -10,8 +10,11 @@ namespace KJPFit.Models
     public class UserDetail
     {
         public int UserId { get; set; }
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
+        [Display(Name = "Height(inches)")]
         public int? HeightInInches { get; set; }
         [Display(Name = "Date Joined")]
         public DateTimeOffset? Joined { get; set; }

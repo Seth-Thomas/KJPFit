@@ -250,6 +250,11 @@
     <Content Include="Views\Stat\Details.cshtml" />
     <Content Include="Views\Stat\Edit.cshtml" />
     <Content Include="Views\Stat\Index.cshtml" />
+    <Content Include="Views\Stat\Delete.cshtml" />
+    <Content Include="Views\Exercise\Create.cshtml" />
+    <Content Include="Views\Exercise\Details.cshtml" />
+    <Content Include="Views\Exercise\Delete.cshtml" />
+    <Content Include="Views\Exercise\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -9,9 +9,11 @@ namespace KJPFit.Models
 {
     public class StatCreate
     {
-        //public int StatId { get; set; }
+        public int StatId { get; set; }
         [Required]
+        [Display(Name = "Body Weight")]
         public int Weight { get; set; }
+        [Display(Name = "What's Your Goal?")]
         [MaxLength(5000)]
         public string GoalMessage { get; set; }
         [Display(Name = "Weight This Day")]

@@ -13,6 +13,6 @@ namespace KJPFit.Models
         public int? Sets { get; set; }
         public int? Reps { get; set; }
         public int? Weight { get; set; }
-        public int? Distance { get; set; }
+        public int? DistanceInMiles { get; set; }
     }
 }

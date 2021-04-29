@@ -10,6 +10,7 @@ namespace KJPFit.Models
     public class WorkoutDetails
     {
         public int WorkoutId { get; set; }
+        [Display(Name = "Workout Name")]
         public string WorkoutName { get; set; }
         
         //public virtual ICollection<ExerciseListItem> Exercises { get; set; }

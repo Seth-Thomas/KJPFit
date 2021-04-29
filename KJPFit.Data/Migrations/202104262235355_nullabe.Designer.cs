@@ -7,13 +7,13 @@ namespace KJPFit.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class DateJoinedtojoinedandaddmodified : IMigrationMetadata
+    public sealed partial class nullabe : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DateJoinedtojoinedandaddmodified));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(nullabe));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104160018284_DateJoined to joined and add modified"; }
+            get { return "202104262235355_nullabe"; }
         }
         
         string IMigrationMetadata.Source

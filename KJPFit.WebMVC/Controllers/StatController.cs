@@ -16,8 +16,17 @@ namespace KJPFit.WebMVC.Controllers
         public ActionResult Index()
         {
             var statId = Guid.Parse(User.Identity.GetUserId());
-            var service = new StatService(statId);
+            var service = new StatService(statId); 
             var model = service.GetStat();
+
+            //lines 22-27 for showing user the count in the listitem
+            //ViewBag.TotalExercises = model.ToList().Count;
+            //return view(model);
+            //In Index view 
+            //<h2>Index</h2>
+            //<label>TotalExercises:</label> ViewBag.TotalExercises
+
+
 
             return View(model);
         }
@@ -35,7 +44,7 @@ namespace KJPFit.WebMVC.Controllers
 
             if (service.CreateStat(model))
             {
-                TempData["SaveResult"] = "You added stats.";
+                TempData["SaveResult"] = "Stats added.";
                 return RedirectToAction("Index");
             };
 
@@ -90,28 +99,28 @@ namespace KJPFit.WebMVC.Controllers
             return View(model);
         }
 
-        //[ActionName("Delete")]
-        //public ActionResult Delete(int id)
-        //{
-        //    var svc = CreateStatService();
-        //    var model = svc.GetStatById(id);
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var svc = CreateStatService();
+            var model = svc.GetStatById(id);
 
-        //    return View(model);
-        //}
+            return View(model);
+        }
 
-        //[HttpPost]
-        //[ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteStat(int id)
-        //{
-        //    var service = CreateStatService();
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteStat(int id)
+        {
+            var service = CreateStatService();
 
-        //    service.DeleteStat(id);
+            service.DeleteStat(id);
 
-        //    TempData["SaveResult"] = "Stats were deleted";
+            TempData["SaveResult"] = "Stats were deleted";
 
-        //    return RedirectToAction("Index");
-        //}
+            return RedirectToAction("Index");
+        }
 
         private StatService CreateStatService()
         {

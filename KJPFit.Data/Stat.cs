@@ -12,14 +12,16 @@ namespace KJPFit.Data
     {
         [Key]
         public int StatId { get; set; }
-        [Required]
-        public Guid OwnerId { get; set; }
+
+        [ForeignKey(nameof(User))]
+        public int UserStatId { get; set; }
+        public virtual User User { get; set; }
+        
         [Required]
         public int Weight{ get; set; }
         public DateTimeOffset WeightDate { get; set; }
-
+        [MaxLength(5000)]
         public string GoalMessage { get; set; }
-        //[ForeignKey]
-        //public int UserId { get; set; }
+        
     }
 }

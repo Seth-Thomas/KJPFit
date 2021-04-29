@@ -76,5 +76,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KJPFit.Data\KJPFit.Data.csproj">
+      <Project>{79031494-fd3e-4dac-b65a-ea9bbd974d8b}</Project>
+      <Name>KJPFit.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

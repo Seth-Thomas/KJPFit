@@ -7,13 +7,13 @@ namespace KJPFit.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class changedusertable : IMigrationMetadata
+    public sealed partial class newdatatbase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(changedusertable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(newdatatbase));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104150150114_changed user table"; }
+            get { return "202104251933356_new datatbase"; }
         }
         
         string IMigrationMetadata.Source

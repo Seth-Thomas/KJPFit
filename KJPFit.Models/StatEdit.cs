@@ -13,6 +13,7 @@ namespace KJPFit.Models
         public int? Weight { get; set; }
         [Display(Name = "Weight This Day")]
         public DateTimeOffset? WeightDate { get; set; }
+        [Display(Name = "Goal Message")]
         [MaxLength(5000)]
         public string GoalMessage { get; set; }
     }
