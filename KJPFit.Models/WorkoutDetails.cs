@@ -12,13 +12,15 @@ namespace KJPFit.Models
         public int WorkoutId { get; set; }
         [Display(Name = "Workout Name")]
         public string WorkoutName { get; set; }
-        
-        //public virtual ICollection<ExerciseListItem> Exercises { get; set; }
+
+        [Display(Name = "Favorited Workout")]
+        public bool IsFavorited { get; set; }
 
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
 
         [Display(Name = "Modified")]
         public DateTimeOffset? ModifiedUtc { get; set; }
+        public List<ExerciseListItem> Exercises { get; set; }
     }
 }

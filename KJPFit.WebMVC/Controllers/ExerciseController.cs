@@ -1,4 +1,5 @@
-﻿using KJPFit.Models;
+﻿using KJPFit.Data;
+using KJPFit.Models;
 using KJPFit.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -24,18 +25,54 @@ namespace KJPFit.WebMVC.Controllers
         {
             return View();
         }
+        public ActionResult AddExerciseToWorkout(int id)
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var serv = new ExerciseService(userId);
+            List<Exercise> exercises = serv.GetExerciseNameList().ToList();
+
+            var query = from c in exercises
+                        select new SelectListItem()
+                        {
+                            Value = c.ExerciseId.ToString(),
+                            Text = c.ExerciseName
+                        };
+
+            ViewBag.ExerciseId = query;
+
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ExerciseCreate model/* int statId*/)
+        public ActionResult Create(ExerciseCreate model)
         {
             if (!ModelState.IsValid) return View(model);
 
             var service = CreateExerciseService();
 
-            if (service.CreateExercise(model/* statId*/))
+            if (service.CreateExercise(model))
             {
                 TempData["SaveResult"] = "Exercise added! Add more!.";
-                return RedirectToAction("Index"); // this will want to return to same screen to they can select more exercises
+                return RedirectToAction("Index");
+            };
+
+            ModelState.AddModelError("", "Exercise could not be added.");
+
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddExerciseToWorkout(ExerciseEdit model, int id)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            var service = CreateExerciseService();
+            model.WorkoutId = id;
+            if (service.UpdateExercise(model))
+            {
+                TempData["SaveResult"] = "Exercise added! Add more!.";
+                return RedirectToAction("AddExerciseToWorkout", new { id = id });
+
             };
 
             ModelState.AddModelError("", "Exercise could not be added.");
@@ -123,4 +160,3 @@ namespace KJPFit.WebMVC.Controllers
 
 
 
-        

@@ -37,6 +37,7 @@ namespace KJPFit.Data
         public DbSet<Stat> Stats { get; set; }
 
         public DbSet<Exercise> Exercises { get; set; }
+        
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

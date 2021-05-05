@@ -9,7 +9,8 @@ namespace KJPFit.Models
 {
     public class ExerciseCreate
     {
-        public int ExerciseId { get; set; }
+        public int? WorkoutId { get; set; }
+
         [Display(Name = "Exercise")]
         public string ExerciseName { get; set; }
         public int? Sets { get; set; }
@@ -17,6 +18,5 @@ namespace KJPFit.Models
         public int? Weight { get; set; }
         [Display(Name = "Distance(miles)")]
         public int? DistanceInMiles { get; set; }
-        //public virtual ICollection<Workout> Workouts { get; set; }
     }
 }

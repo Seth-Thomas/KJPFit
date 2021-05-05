@@ -9,9 +9,9 @@ namespace KJPFit.Models
 {
     public class WorkoutCreate
     {
-        //public int WorkoutId { get; set; }
         [Display(Name = "Workout Name")]
         public string WorkoutName { get; set; }
         
+        public List <ExerciseCreate> ExerciseCreates{ get; set; }
     }
 }

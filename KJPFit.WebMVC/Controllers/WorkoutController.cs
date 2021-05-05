@@ -23,25 +23,26 @@ namespace KJPFit.WebMVC.Controllers
         }
         public ActionResult Create()
         {
-            var workoutId = Guid.Parse(User.Identity.GetUserId());
-            var service = new ExerciseService(workoutId);
-
-            List<Exercise> exercises = service.GetExerciseNameList().ToList(); //at 50:40 of vid
-
+            
             return View();
+
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(WorkoutCreate model)
         {
-            if (!ModelState.IsValid) return View(model);
+            if (!ModelState.IsValid)
+            
+                return View(model);
 
             var service = CreateWorkoutService();
-
-            if (service.CreateWorkout(model))
+            var thing = service.CreateWorkout(model);
+            
+            if ( thing != -1)
             {
+                
                 TempData["SaveResult"] = "Workout Created.";
-                return RedirectToAction("Index"); 
+                return RedirectToAction("AddExerciseToWorkout", "Exercise", new {id = thing }); 
             };
 
             ModelState.AddModelError("", "Workout could not be created.");
@@ -55,16 +56,33 @@ namespace KJPFit.WebMVC.Controllers
 
             return View(model);
         }
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id) 
         {
             var service = CreateWorkoutService();
             var detail = service.GetWorkoutById(id);
             var model =
                 new WorkoutEdit
                 {
-                    
+                    WorkoutId = detail.WorkoutId,
+                    WorkoutName = detail.WorkoutName,
+                    IsFavorited = detail.IsFavorited,
+                    Exercises = detail.Exercises
+                    .Select(
+                                 e => new ExerciseEdit
+                                 {
+                                     WorkoutId = e.WorkoutId,
+                                     ExerciseId = e.ExerciseId,
+                                     ExerciseName = e.ExerciseName, // this needs to be drop down in views
+                                     Sets = e.Sets,
+                                     Reps = e.Reps,
+                                     Weight = e.Weight,
+                                     DistanceInMiles = e.DistanceInMiles
+
+                                 }).ToList()
+
+
                 };
-            return View(model);
+            return View(model); 
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -3,7 +3,7 @@ namespace KJPFit.Data.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class newdatatbase : DbMigration
+    public partial class InitialCreate : DbMigration
     {
         public override void Up()
         {
@@ -13,23 +13,29 @@ namespace KJPFit.Data.Migrations
                     {
                         ExerciseId = c.Int(nullable: false, identity: true),
                         ExerciseName = c.String(nullable: false),
-                        Sets = c.Int(nullable: false),
-                        Reps = c.Int(nullable: false),
-                        Weight = c.Int(nullable: false),
-                        DistanceInMiles = c.Int(nullable: false),
+                        Sets = c.Int(),
+                        Reps = c.Int(),
+                        Weight = c.Int(),
+                        DistanceInMiles = c.Int(),
+                        WorkoutId = c.Int(),
                     })
-                .PrimaryKey(t => t.ExerciseId);
+                .PrimaryKey(t => t.ExerciseId)
+                .ForeignKey("dbo.Workout", t => t.WorkoutId)
+                .Index(t => t.WorkoutId);
             
             CreateTable(
                 "dbo.Workout",
                 c => new
                     {
                         WorkoutId = c.Int(nullable: false, identity: true),
+                        UserId = c.Int(nullable: false),
                         WorkoutName = c.String(nullable: false),
                         IsFavorited = c.Boolean(nullable: false),
                         Created = c.DateTimeOffset(nullable: false, precision: 7),
                     })
-                .PrimaryKey(t => t.WorkoutId);
+                .PrimaryKey(t => t.WorkoutId)
+                .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.User",
@@ -129,19 +135,6 @@ namespace KJPFit.Data.Migrations
                 .ForeignKey("dbo.ApplicationUser", t => t.ApplicationUser_Id)
                 .Index(t => t.ApplicationUser_Id);
             
-            CreateTable(
-                "dbo.WorkoutExercise",
-                c => new
-                    {
-                        Workout_WorkoutId = c.Int(nullable: false),
-                        Exercise_ExerciseId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.Workout_WorkoutId, t.Exercise_ExerciseId })
-                .ForeignKey("dbo.Workout", t => t.Workout_WorkoutId, cascadeDelete: true)
-                .ForeignKey("dbo.Exercise", t => t.Exercise_ExerciseId, cascadeDelete: true)
-                .Index(t => t.Workout_WorkoutId)
-                .Index(t => t.Exercise_ExerciseId);
-            
         }
         
         public override void Down()
@@ -151,16 +144,15 @@ namespace KJPFit.Data.Migrations
             DropForeignKey("dbo.IdentityUserClaim", "ApplicationUser_Id", "dbo.ApplicationUser");
             DropForeignKey("dbo.Stat", "UserStatId", "dbo.User");
             DropForeignKey("dbo.IdentityUserRole", "IdentityRole_Id", "dbo.IdentityRole");
-            DropForeignKey("dbo.WorkoutExercise", "Exercise_ExerciseId", "dbo.Exercise");
-            DropForeignKey("dbo.WorkoutExercise", "Workout_WorkoutId", "dbo.Workout");
-            DropIndex("dbo.WorkoutExercise", new[] { "Exercise_ExerciseId" });
-            DropIndex("dbo.WorkoutExercise", new[] { "Workout_WorkoutId" });
+            DropForeignKey("dbo.Exercise", "WorkoutId", "dbo.Workout");
+            DropForeignKey("dbo.Workout", "UserId", "dbo.User");
             DropIndex("dbo.IdentityUserLogin", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserClaim", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.Stat", new[] { "UserStatId" });
             DropIndex("dbo.IdentityUserRole", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.IdentityUserRole", new[] { "IdentityRole_Id" });
-            DropTable("dbo.WorkoutExercise");
+            DropIndex("dbo.Workout", new[] { "UserId" });
+            DropIndex("dbo.Exercise", new[] { "WorkoutId" });
             DropTable("dbo.IdentityUserLogin");
             DropTable("dbo.IdentityUserClaim");
             DropTable("dbo.ApplicationUser");

@@ -17,14 +17,13 @@ namespace KJPFit.Services
             _userId = userId;
         }
 
-        // Changed UserStatId from StatId. Unsure of this.
-        public bool CreateExercise(ExerciseCreate model/*, int exerciseId*/) // watch FK video again for this method 
+        
+        public bool CreateExercise(ExerciseCreate model) 
         {
             var entity =
                 new Exercise()
                 {
-                    //OwnerId = _userId,
-                    ExerciseId = model.ExerciseId, /*exerciseId,*/ // relate to FK video 
+                    WorkoutId = model.WorkoutId,
                     ExerciseName = model.ExerciseName,
                     Sets = model.Sets,
                     Reps = model.Reps,
@@ -45,12 +44,11 @@ namespace KJPFit.Services
                 var query =
                     ctx
                         .Exercises
-                        //.Where(e => e.StatId == _userId)
                         .Select(
                             e =>
                                 new ExerciseListItem
                                 {
-                                    ExerciseId = e.ExerciseId, //issue later?
+                                    ExerciseId = e.ExerciseId, 
                                     ExerciseName = e.ExerciseName,
                                     Sets = e.Sets,
                                     Reps = e.Reps,
@@ -62,6 +60,25 @@ namespace KJPFit.Services
                 return query.ToArray();
             }
         }
+        public IEnumerable<ExerciseListItem> GetExercisesByWorkoutId(int workoutId) 
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var foundItems =
+                    ctx.Workouts.Single(w => w.WorkoutId == workoutId).Exercises
+                    .Select(e => new ExerciseListItem
+                    {
+                        ExerciseId = e.ExerciseId,
+                        ExerciseName = e.ExerciseName,
+                        Sets = e.Sets,
+                        Reps = e.Reps,
+                        Weight = e.Weight,
+                        DistanceInMiles = e.DistanceInMiles
+                    }
+                    );
+                return foundItems.ToArray();
+            }
+        }
         public IEnumerable<Exercise> GetExerciseNameList()
         {
             using (var ctx = new ApplicationDbContext())
@@ -69,17 +86,9 @@ namespace KJPFit.Services
                 var query =
                     ctx
                         .Exercises
-                        //.Where(e => e.StatId == _userId)
                         .Select(
-                            e =>
-                                new Exercise
-                                {
-                                    ExerciseName = e.ExerciseName,
-                                    //Sets = e.Sets,
-                                    //Reps = e.Reps,
-                                    //Weight = e.Weight,
-                                }
-                        );
+                            e => e.ExerciseName
+                        ).Distinct();
 
                 return ctx.Exercises.ToList();
             }
@@ -91,7 +100,7 @@ namespace KJPFit.Services
                 var entity =
                     ctx
                         .Exercises
-                        .Single(e => e.ExerciseId == id); /*&& e.UserId == _userId);*/
+                        .Single(e => e.ExerciseId == id); 
                 return
                     new ExerciseDetails
                     {
@@ -112,8 +121,9 @@ namespace KJPFit.Services
                 var entity =
                     ctx
                         .Exercises
-                        .Single(e => e.ExerciseId == model.ExerciseId); // && e.UserId == _userId);
-
+                        .Single(e => e.ExerciseId == model.ExerciseId);
+                entity.WorkoutId = model.WorkoutId;
+                if(model.ExerciseName != null)
                 entity.ExerciseName = model.ExerciseName;
                 entity.Sets = model.Sets;
                 entity.Reps = model.Reps;
@@ -130,7 +140,7 @@ namespace KJPFit.Services
                 var entity =
                     ctx
                         .Exercises
-                        .Single(e => e.ExerciseId == exerciseId); // && e.UserId == _userId);
+                        .Single(e => e.ExerciseId == exerciseId);
 
                 ctx.Exercises.Remove(entity);
 

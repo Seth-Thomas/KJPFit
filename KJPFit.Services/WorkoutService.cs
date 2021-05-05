@@ -17,21 +17,33 @@ namespace KJPFit.Services
             _userId = userId;
         }
 
-
-        public bool CreateWorkout(WorkoutCreate model)/*, int workoutId) */// watch FK video again for this method 
+        public int CreateWorkout(WorkoutCreate model)
         {
-            var entity =
+            using (var ctx = new ApplicationDbContext())
+
+            {
+                var thing =
+                    ctx
+                        .KJPUser
+                        .First(e => e.OwnerId == _userId);
+
+                var entity =
                 new Workout()
                 {
-                    
+                    UserId = thing.UserId,
+                    WorkoutName = model.WorkoutName,
+                    Created = DateTimeOffset.Now,
                 };
 
-            using (var ctx = new ApplicationDbContext())
-            {
                 ctx.Workouts.Add(entity);
-                return ctx.SaveChanges() == 1;
+                if (ctx.SaveChanges() == 1)
+                {
+                    return entity.WorkoutId;
+                }
+                return -1;
             }
         }
+        
         public IEnumerable<WorkoutListItem> GetWorkout()
         {
             using (var ctx = new ApplicationDbContext())
@@ -39,18 +51,24 @@ namespace KJPFit.Services
                 var query =
                     ctx
                         .Workouts
-                        //.Where(e => e.StatId == _userId)
                         .Select(
                             e =>
                                 new WorkoutListItem
                                 {
+
+                                    WorkoutId = e.WorkoutId,
+                                    WorkoutName = e.WorkoutName,
+                                    CreatedUtc = e.Created,
+                                    IsFavorited = e.IsFavorited
                                     
+
                                 }
                         );
 
                 return query.ToArray();
             }
         }
+
         public WorkoutDetails GetWorkoutById(int id)
         {
             using (var ctx = new ApplicationDbContext())
@@ -58,43 +76,82 @@ namespace KJPFit.Services
                 var entity =
                     ctx
                         .Workouts
-                        .Single(e => e.WorkoutId == id); /*&& e.UserId == _userId);*/
+                        .Single(e => e.WorkoutId == id);
                 return
                     new WorkoutDetails
                     {
-                        
+                        WorkoutId = entity.WorkoutId,
+                        WorkoutName = entity.WorkoutName,
+                        CreatedUtc = entity.Created,
+                        ModifiedUtc = entity.Modified,
+                        Exercises = entity.Exercises
+
+                            .Select(
+                                 e => new ExerciseListItem
+                                 {
+                                     WorkoutId = e.WorkoutId,
+                                     ExerciseId = e.ExerciseId,
+                                     ExerciseName = e.ExerciseName,
+                                     Sets = e.Sets,
+                                     Reps = e.Reps,
+                                     Weight = e.Weight,
+                                     DistanceInMiles = e.DistanceInMiles
+
+                                 }).ToList()
                     };
+
             }
         }
-        public bool UpdateWorkout(WorkoutEdit model)
+        public bool UpdateWorkout(WorkoutEdit model) 
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Workouts
-                        .Single(e => e.WorkoutId == model.WorkoutId); // && e.UserId == _userId);
+                        .Single(e => e.WorkoutId == model.WorkoutId);
 
-                //entity.Weight = (int)model.Weight;
-                //entity.WeightDate = DateTimeOffset.Now;
-                //entity.GoalMessage = model.GoalMessage;
+                entity.WorkoutName = model.WorkoutName;
+                entity.IsFavorited = model.IsFavorited;
+                entity.Modified = DateTimeOffset.UtcNow;
+
+                foreach (var exerciseEdit in model.Exercises)
+                {
+                    var updateExercise = 
+                     ctx
+                         .Exercises
+                         .Single(e => e.ExerciseId == exerciseEdit.ExerciseId);
+
+                    updateExercise.WorkoutId = model.WorkoutId;
+                    if (exerciseEdit.ExerciseName != null)
+                        updateExercise.ExerciseName = exerciseEdit.ExerciseName;
+                    updateExercise.Sets = exerciseEdit.Sets;
+                    updateExercise.Reps = exerciseEdit.Reps;
+                    updateExercise.Weight = exerciseEdit.Weight;
+                    updateExercise.DistanceInMiles = exerciseEdit.DistanceInMiles;
+                }
 
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() >= 1;
             }
         }
-        public bool DeleteWorkout(int workoutId)
+        public bool DeleteWorkout(int workoutId) 
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var entity =
+                var entity  =
                     ctx
                         .Workouts
-                        .Single(e => e.WorkoutId == workoutId); // && e.UserId == _userId);
+                        .Single(e => e.WorkoutId == workoutId);
+                
+                while( entity.Exercises.Count > 0)
+                {
+                    ctx.Exercises.Remove(entity.Exercises[0]);
 
+                }
                 ctx.Workouts.Remove(entity);
 
-                return ctx.SaveChanges() == 1;
+                return ctx.SaveChanges() >= 1;
             }
         }
     }

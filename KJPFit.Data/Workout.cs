@@ -9,28 +9,22 @@ using System.Threading.Tasks;
 
 namespace KJPFit.Data
 {
-    public class Workout //Order
+    public class Workout
     {
-        //One to Many FK for user and workout/exercises?
-        //Many to Many FK for workout and exercise?
         [Key]
         public int WorkoutId { get; set; }
-        //[Required]
-        //public Guid OwnerId { get; set; }
-        //[ForeignKey("User")]
-        //public int UserId { get; set; }
-        //public virtual User User { get; set; }
+        
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
         [Required]
         public string WorkoutName { get; set; }
         [DefaultValue(false)]
         public bool IsFavorited { get; set; }
         [Required]
         public DateTimeOffset Created { get; set; }
-        public virtual ICollection<Exercise> Exercises { get; set; }
-
-        public Workout()
-        {
-            Exercises = new HashSet<Exercise>();
-        }
+        public DateTimeOffset? Modified { get; set; }
+        public virtual List<Exercise> Exercises { get; set; }
+       
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,12 +31,11 @@ namespace KJPFit.Data
         public int? Weight { get; set; }
         
         public int? DistanceInMiles { get; set; }
-        public Category Category { get; set; }
-        public virtual ICollection<Workout> Workouts { get; set; }
+        
+        [ForeignKey (nameof(Workouts))]
+        public int? WorkoutId { get; set; }
+        public virtual Workout Workouts { get; set; }
 
-        public Exercise()
-        {
-            Workouts = new HashSet<Workout>(); 
-        }
+        
     }
 }

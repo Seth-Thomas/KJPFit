@@ -10,14 +10,15 @@ namespace KJPFit.Models
     public class WorkoutListItem
     {
         public int WorkoutId { get; set; }
+        [Display(Name = "Workout Name")]
         public string WorkoutName { get; set; }
 
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
-        [UIHint("Favorited")]
-        [Display(Name = "Important")]
+        [UIHint("Starred")]
+        [Display(Name = "Favorited Workout")]
         public bool IsFavorited { get; set; } 
 
-        // ElevenNote Star 0.01 module after workout is finished
+        
     }
 }

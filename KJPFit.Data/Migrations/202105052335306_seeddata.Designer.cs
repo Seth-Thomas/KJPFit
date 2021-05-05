@@ -7,13 +7,13 @@ namespace KJPFit.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class nullabe : IMigrationMetadata
+    public sealed partial class seeddata : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(nullabe));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(seeddata));
         
         string IMigrationMetadata.Id
         {
-            get { return "202104262235355_nullabe"; }
+            get { return "202105052335306_seeddata"; }
         }
         
         string IMigrationMetadata.Source

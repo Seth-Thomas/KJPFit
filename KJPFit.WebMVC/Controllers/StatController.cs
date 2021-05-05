@@ -19,15 +19,6 @@ namespace KJPFit.WebMVC.Controllers
             var service = new StatService(statId); 
             var model = service.GetStat();
 
-            //lines 22-27 for showing user the count in the listitem
-            //ViewBag.TotalExercises = model.ToList().Count;
-            //return view(model);
-            //In Index view 
-            //<h2>Index</h2>
-            //<label>TotalExercises:</label> ViewBag.TotalExercises
-
-
-
             return View(model);
         }
         public ActionResult Create()

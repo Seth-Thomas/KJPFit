@@ -13,11 +13,11 @@ namespace KJPFit.Models
         [Display(Name = "Workout Name")]
         public string WorkoutName { get; set; }
 
-        //public virtual ICollection<ExerciseListItem> Exercises { get; set; }
+        public List<ExerciseEdit> Exercises { get; set; }
 
 
-        //[UIHint("Starred")]
-        //[Display(Name = "Important")]
-        //public bool IsFavortied { get; set; }
+        [UIHint("Starred")]
+        [Display(Name = "Favorited Workout")]
+        public bool IsFavorited { get; set; }
     }
 }

@@ -1,0 +1,98 @@
+﻿@model KJPFit.Models.WorkoutEdit
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Make Some Changes</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.WorkoutId)
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.WorkoutName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.WorkoutName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.WorkoutName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @for (var i = 0;i < Model.Exercises.Count;i++)
+    {
+        @Html.HiddenFor(model => model.Exercises[i].ExerciseId)
+        @Html.HiddenFor(model => model.Exercises[i].WorkoutId)
+        @Html.HiddenFor(model => model.Exercises[i].ExerciseName)
+<div class="form-group">
+    @Html.LabelFor(model => model.Exercises[i].ExerciseName, htmlAttributes: new { @class = "control-label col-md-2" })
+    @*@Html.EditorFor(model => model.Exercises[i].ExerciseName, new { htmlAttributes = new { @class = "form-control" } })*@
+    @Html.DisplayFor(model => model.Exercises[i].ExerciseName, new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+    </div>
+</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Exercises[i].Sets, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Exercises[i].Sets, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Exercises[i].Sets, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Exercises[i].Reps, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Exercises[i].Reps, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Exercises[i].Reps, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Exercises[i].Weight, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Exercises[i].Weight, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Exercises[i].Weight, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Exercises[i].DistanceInMiles, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Exercises[i].DistanceInMiles, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Exercises[i].DistanceInMiles, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    }
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsFavorited, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.IsFavorited)
+                @Html.ValidationMessageFor(model => model.IsFavorited, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-success" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

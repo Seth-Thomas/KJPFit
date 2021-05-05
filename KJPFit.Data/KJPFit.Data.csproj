@@ -43,9 +43,21 @@
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,17 +68,25 @@
   <ItemGroup>
     <Compile Include="Exercise.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202104251933356_new datatbase.cs" />
-    <Compile Include="Migrations\202104251933356_new datatbase.Designer.cs">
-      <DependentUpon>202104251933356_new datatbase.cs</DependentUpon>
+    <Compile Include="Migrations\202104302338244_InitialCreate.cs" />
+    <Compile Include="Migrations\202104302338244_InitialCreate.Designer.cs">
+      <DependentUpon>202104302338244_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104262235355_nullabe.cs" />
-    <Compile Include="Migrations\202104262235355_nullabe.Designer.cs">
-      <DependentUpon>202104262235355_nullabe.cs</DependentUpon>
+    <Compile Include="Migrations\202105021623115_update.cs" />
+    <Compile Include="Migrations\202105021623115_update.Designer.cs">
+      <DependentUpon>202105021623115_update.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202104272355214_guid added.cs" />
-    <Compile Include="Migrations\202104272355214_guid added.Designer.cs">
-      <DependentUpon>202104272355214_guid added.cs</DependentUpon>
+    <Compile Include="Migrations\202105042315074_modifiedToWorkout.cs" />
+    <Compile Include="Migrations\202105042315074_modifiedToWorkout.Designer.cs">
+      <DependentUpon>202105042315074_modifiedToWorkout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105050023129_modified.cs" />
+    <Compile Include="Migrations\202105050023129_modified.Designer.cs">
+      <DependentUpon>202105050023129_modified.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105052335306_seeddata.cs" />
+    <Compile Include="Migrations\202105052335306_seeddata.Designer.cs">
+      <DependentUpon>202105052335306_seeddata.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,14 +99,20 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104251933356_new datatbase.resx">
-      <DependentUpon>202104251933356_new datatbase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104302338244_InitialCreate.resx">
+      <DependentUpon>202104302338244_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104262235355_nullabe.resx">
-      <DependentUpon>202104262235355_nullabe.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105021623115_update.resx">
+      <DependentUpon>202105021623115_update.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202104272355214_guid added.resx">
-      <DependentUpon>202104272355214_guid added.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105042315074_modifiedToWorkout.resx">
+      <DependentUpon>202105042315074_modifiedToWorkout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105050023129_modified.resx">
+      <DependentUpon>202105050023129_modified.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105052335306_seeddata.resx">
+      <DependentUpon>202105052335306_seeddata.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
