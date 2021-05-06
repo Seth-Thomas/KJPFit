@@ -4,4 +4,11 @@ This project is a .NET Framework MVC 5 Web Application using n-tier architecture
 ## _Installation_
 Be sure to have the latest version of Visual Studio installed. From the main branch you will  be able to download the solution and open it.
 ## _Using the App_
-Simply load the app and first register an account. From there you will create a profile. After you create a profile you can navigate the website!
+Simply run the app and first register an account. From there you will create a profile. After you create a profile you can navigate the website and create/edit your workout.
+## _Resources_
+1. Learning Gym
+2. [Stack Overflow](https://stackoverflow.com)
+3. [Youtube](https://www.youtube.com)
+4. [Bootswatch](https://bootswatch.com/)
+5. [Azure](https://azure.microsoft.com/en-us/)
+6. [Entity Framework Website](https://entityframework.net/)
