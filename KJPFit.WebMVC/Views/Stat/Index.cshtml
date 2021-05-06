@@ -1,0 +1,81 @@
+﻿@model IEnumerable<KJPFit.Models.StatListItem>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Your Stats</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@if (TempData.ContainsKey("SaveResult"))
+{
+    @*<div class="alert alert-success fade in" role="alert">
+
+            <button type="button" class="close" data-dismiss="alert">
+                <span>&times;</span>
+            </button>
+            @TempData["SaveResult"]
+        </div>*@
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StatId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HeightInInches)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WeightDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GoalMessage)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HeightInInches)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WeightDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GoalMessage)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.StatId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.StatId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.StatId })
+
+        </td>
+    </tr>
+        }
+
+    </table>
+}

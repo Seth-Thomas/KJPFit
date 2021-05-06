@@ -1,0 +1,87 @@
+﻿@model KJPFit.Models.WorkoutDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Workout Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkoutId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkoutId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkoutName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkoutName)
+        </dd>
+        @foreach (var item in Model.Exercises)
+        {
+            <dt>
+                @Html.DisplayNameFor(modelItem => item.ExerciseName)
+            </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => item.ExerciseName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(modelItem => item.Sets)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => item.Sets)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(modelItem => item.Reps)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => item.Reps)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(modelItem => item.Weight)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem  => item.Weight)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(modelItem => item.DistanceInMiles)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => item.DistanceInMiles)
+        </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedUtc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedUtc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedUtc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedUtc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.WorkoutId}) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

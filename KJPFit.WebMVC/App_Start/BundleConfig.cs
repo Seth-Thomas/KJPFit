@@ -23,7 +23,7 @@ namespace KJPFit.WebMVC
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-Yeti.css",
                       "~/Content/site.css"));
         }
     }

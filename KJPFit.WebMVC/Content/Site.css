@@ -1,6 +1,11 @@
 ﻿body {
+    /*background-image: url('https://blog.gympass.com/wp-content/uploads/2018/03/ThinkstockPhotos-892146834-1.jpg');*/
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding-top: 50px;
     padding-bottom: 20px;
+    
 }
 
 /* Set padding to keep content from hitting the edges */
