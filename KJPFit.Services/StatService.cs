@@ -18,7 +18,7 @@ namespace KJPFit.Services
         }
 
         
-        public bool CreateStat(StatCreate model) // watch FK video again for this method 
+        public bool CreateStat(StatCreate model) 
         {
 
             var context = new ApplicationDbContext();
@@ -47,7 +47,6 @@ namespace KJPFit.Services
                 var query =
                     ctx
                         .Stats
-                        //.Where(e => e.StatId == _userId)
                         .Select(
                             e =>
                                 new StatListItem
@@ -72,7 +71,7 @@ namespace KJPFit.Services
                 var entity =
                     ctx
                         .Stats
-                        .Single(e => e.StatId == id); /*&& e.UserId == _userId);*/
+                        .Single(e => e.StatId == id);
                 return
                     new StatDetails
                     {
@@ -93,7 +92,7 @@ namespace KJPFit.Services
                 var entity =
                     ctx
                         .Stats
-                        .Single(e => e.StatId == model.StatId); // && e.UserId == _userId);
+                        .Single(e => e.StatId == model.StatId);
 
                 entity.Weight = (int)model.Weight;
                 entity.WeightDate = DateTimeOffset.Now;
@@ -110,7 +109,7 @@ namespace KJPFit.Services
                 var entity =
                     ctx
                         .Stats
-                        .Single(e => e.StatId == statId); // && e.UserId == _userId);
+                        .Single(e => e.StatId == statId); 
 
                 ctx.Stats.Remove(entity);
 

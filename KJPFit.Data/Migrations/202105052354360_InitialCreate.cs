@@ -32,6 +32,7 @@ namespace KJPFit.Data.Migrations
                         WorkoutName = c.String(nullable: false),
                         IsFavorited = c.Boolean(nullable: false),
                         Created = c.DateTimeOffset(nullable: false, precision: 7),
+                        Modified = c.DateTimeOffset(precision: 7),
                     })
                 .PrimaryKey(t => t.WorkoutId)
                 .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: true)

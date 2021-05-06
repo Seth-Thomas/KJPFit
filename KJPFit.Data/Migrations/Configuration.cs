@@ -15,14 +15,14 @@ namespace KJPFit.Data.Migrations
 
         protected override void Seed(KJPFit.Data.ApplicationDbContext context)
         {
-            //This method will be called after migrating to the latest version.
+            //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.E.g.
-
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
                 context.Exercises.AddOrUpdate(
                   p => p.ExerciseName,
-                  new Exercise { ExerciseName = "Bench Press" },
+            new Exercise { ExerciseName = "Bench Press" },
                   new Exercise { ExerciseName = "Incline Bench Press" },
                   new Exercise { ExerciseName = "Decline Bench Press" },
                   new Exercise { ExerciseName = "Lat Pulldown" },
@@ -46,8 +46,8 @@ namespace KJPFit.Data.Migrations
                   new Exercise { ExerciseName = "Treadmill" },
                   new Exercise { ExerciseName = "Eliptical" },
                   new Exercise { ExerciseName = "StairMaster" }
-                );
-
+               );
+            
         }
     }
 }

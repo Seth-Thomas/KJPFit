@@ -22,7 +22,7 @@ namespace KJPFit.Data
         public int HeightInInches { get; set; }
         public DateTimeOffset Joined { get; set; }
         public DateTimeOffset Modified { get; set; }
-        //public virtual Stat UStat { get; set; }
+        
        
     }
 }

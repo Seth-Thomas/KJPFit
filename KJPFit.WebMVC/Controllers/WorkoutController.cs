@@ -58,6 +58,21 @@ namespace KJPFit.WebMVC.Controllers
         }
         public ActionResult Edit(int id) 
         {
+            //var userId = Guid.Parse(User.Identity.GetUserId());
+            //var serv = new ExerciseService(userId);
+            //List<Exercise> exercises = serv.GetExerciseNameList().ToList();
+
+            //var query = from c in exercises
+            //            select new SelectListItem()
+            //            {
+            //                Value = c.ExerciseId.ToString(),
+            //                Text = c.ExerciseName
+            //            };
+
+            //ViewBag.ExerciseId = query;
+
+            
+
             var service = CreateWorkoutService();
             var detail = service.GetWorkoutById(id);
             var model =
@@ -72,7 +87,7 @@ namespace KJPFit.WebMVC.Controllers
                                  {
                                      WorkoutId = e.WorkoutId,
                                      ExerciseId = e.ExerciseId,
-                                     ExerciseName = e.ExerciseName, // this needs to be drop down in views
+                                     ExerciseName = e.ExerciseName, 
                                      Sets = e.Sets,
                                      Reps = e.Reps,
                                      Weight = e.Weight,

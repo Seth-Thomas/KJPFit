@@ -46,7 +46,8 @@
                 @Html.ActionLink("Edit", "Edit", new { id = item.WorkoutId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.WorkoutId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.WorkoutId }) |
-                @Html.ActionLink("Add Exercise", "AddExerciseToWorkout", new { id = item.WorkoutId }) |
+                @Html.ActionLink("Add Exercise", "AddExerciseToWorkout", "Exercise", new { id = item.WorkoutId }, null) |
+                @*@Html.ActionLink("Delete Exercise", "Delete", "Exercise", new { id = item.WorkoutId }, null)*@
             </td>
         </tr>
     }

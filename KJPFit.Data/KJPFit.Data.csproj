@@ -68,25 +68,13 @@
   <ItemGroup>
     <Compile Include="Exercise.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202104302338244_InitialCreate.cs" />
-    <Compile Include="Migrations\202104302338244_InitialCreate.Designer.cs">
-      <DependentUpon>202104302338244_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202105052354360_InitialCreate.cs" />
+    <Compile Include="Migrations\202105052354360_InitialCreate.Designer.cs">
+      <DependentUpon>202105052354360_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202105021623115_update.cs" />
-    <Compile Include="Migrations\202105021623115_update.Designer.cs">
-      <DependentUpon>202105021623115_update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105042315074_modifiedToWorkout.cs" />
-    <Compile Include="Migrations\202105042315074_modifiedToWorkout.Designer.cs">
-      <DependentUpon>202105042315074_modifiedToWorkout.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105050023129_modified.cs" />
-    <Compile Include="Migrations\202105050023129_modified.Designer.cs">
-      <DependentUpon>202105050023129_modified.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202105052335306_seeddata.cs" />
-    <Compile Include="Migrations\202105052335306_seeddata.Designer.cs">
-      <DependentUpon>202105052335306_seeddata.cs</DependentUpon>
+    <Compile Include="Migrations\202105060010033_seeddata.cs" />
+    <Compile Include="Migrations\202105060010033_seeddata.Designer.cs">
+      <DependentUpon>202105060010033_seeddata.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,20 +87,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202104302338244_InitialCreate.resx">
-      <DependentUpon>202104302338244_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105052354360_InitialCreate.resx">
+      <DependentUpon>202105052354360_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105021623115_update.resx">
-      <DependentUpon>202105021623115_update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105042315074_modifiedToWorkout.resx">
-      <DependentUpon>202105042315074_modifiedToWorkout.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105050023129_modified.resx">
-      <DependentUpon>202105050023129_modified.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202105052335306_seeddata.resx">
-      <DependentUpon>202105052335306_seeddata.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202105060010033_seeddata.resx">
+      <DependentUpon>202105060010033_seeddata.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

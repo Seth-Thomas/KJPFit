@@ -120,7 +120,7 @@ namespace KJPFit.WebMVC.Controllers
             if (service.UpdateExercise(model))
             {
                 TempData["SaveResult"] = "Exercise info was updated.";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index, Workout");
             }
 
             ModelState.AddModelError("", "Exercise info could not be updated.");
@@ -146,7 +146,7 @@ namespace KJPFit.WebMVC.Controllers
 
             TempData["SaveResult"] = "Exercise was deleted";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index, Workout");
         }
         private ExerciseService CreateExerciseService()
         {

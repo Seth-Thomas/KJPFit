@@ -7,13 +7,13 @@ namespace KJPFit.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.0-30225")]
-    public sealed partial class update : IMigrationMetadata
+    public sealed partial class seeddata : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(update));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(seeddata));
         
         string IMigrationMetadata.Id
         {
-            get { return "202105021623115_update"; }
+            get { return "202105060010033_seeddata"; }
         }
         
         string IMigrationMetadata.Source

@@ -13,7 +13,7 @@ namespace KJPFit.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202104302338244_InitialCreate"; }
+            get { return "202105052354360_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
